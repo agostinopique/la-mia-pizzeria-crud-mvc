@@ -31,8 +31,14 @@
                 <td>@pizza.Description</td>
                 <td><img style="width: 150px; height: 100px;" src="@Url.Content(@pizza.Picture)" alt="@pizza.Name"></td>
                 <td>&euro; @pizza.Price</td>
-                <td><a href="@Url.Action("Details", "Pizza", new {id = pizza.Id})" >Dettagli</a></td>
-                <td><a href="@Url.Action("Edit", "Pizza", new {id = pizza.Id})">Edit</a></td>
+                <td><a class ="btn btn-primary" href="@Url.Action("Details", "Pizza", new {id = pizza.Id})">Dettagli</a></td>
+                <td><a class="btn btn-warning" href="@Url.Action("Edit", "Pizza", new {id = pizza.Id})">Edit</a></td>
+                <td>
+                    <form asp-controller="Pizza" asp-action="Delete" asp-route-id="@pizza.Id" method="post">
+                        @Html.AntiForgeryToken()
+                        <button class="btn btn-danger" type="submit">Delete</button>
+                    </form>
+                </td>
             </tr>
             count++;
         }
