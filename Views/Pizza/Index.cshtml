@@ -32,6 +32,7 @@
                 <td><img style="width: 150px; height: 100px;" src="@Url.Content(@pizza.Picture)" alt="@pizza.Name"></td>
                 <td>&euro; @pizza.Price</td>
                 <td><a href="@Url.Action("Details", "Pizza", new {id = pizza.Id})" >Dettagli</a></td>
+                <td><a href="@Url.Action("Edit", "Pizza", new {id = pizza.Id})">Edit</a></td>
             </tr>
             count++;
         }
