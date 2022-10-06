@@ -1,0 +1,36 @@
+﻿@{
+    //Layout = null;
+    Layout = "_layout";
+    ViewData["Title"] = "Pizza Home Page";
+    string[] pizzas = { "Magherita", "Marinara", "Napoli", "Wurstel", "Salamino piccante", "Maialona" };
+    string[] descriptions = { "Pizza con pomodoro, mozzarella e basilico", "Pizza con pomodoro, olio e aglio", "Pizza napoletana", "pizza con pomodoro", "mozzarella e wurtel", "Pizza con pomodoro, mozzarella e salamino piccante", "Pizza margherita con wurstel, salsiccia, salamino picccante" };
+    string[] pictures = { "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Pizza_Margherita_stu_spivack.jpg/1280px-Pizza_Margherita_stu_spivack.jpg", "https://www.buttalapasta.it/wp-content/uploads/2021/03/pizza-marinara.jpg", "https://wips.plug.it/cips/buonissimo.org/cms/2012/07/pizza-napoli-5.jpg", "https://www.lospicchiodaglio.it/img/ricette/pizzawurstel.jpg", "https://api.molinocasillo.com/wp-content/uploads/2020/07/pizza.jpg", "https://media-cdn.tripadvisor.com/media/photo-s/13/a4/63/f8/pizza-maialona.jpg"};
+    string[] prices = { "5", "4", "6,50", "6", "6", "7" };
+}
+
+<div class="text-center">
+    <h1>Oh what a splendid pie, pizza pizza pie!!!</h1>
+    <h2>Splendid STATIC pies!</h2>
+
+   <table>
+        <tr>
+            <th>Pizza name</th>
+            <th>Description</th>
+            <th>Pictures</th>
+            <th>Prices</th>
+        </tr>
+       
+        @for (var i = 0; i < pizzas.Length; i++)
+        {
+            <tr>
+                <td>@pizzas[i]</td>
+                <td>@descriptions[i]</td>
+                <td>
+                    <img style="width: 150px; height: 100px;" src="@Url.Content(pictures[i])" alt="pizza-image">
+                </td>
+                <td>@prices[i]</td>
+            </tr>
+        }
+    </table>
+</div>
+ 

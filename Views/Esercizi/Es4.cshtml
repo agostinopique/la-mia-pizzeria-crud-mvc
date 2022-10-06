@@ -1,0 +1,35 @@
+﻿@{
+    // Creare una List<int> di 20 numeri interi (generati random da 1 a  90 inclusi), 
+    // Mostrare in pagina solo i numeri compresi tra 20 e 70
+
+    List<int> numbers = new List<int>();
+
+    List<int> checkedNumbers = new List<int>();
+
+    void CheckNumbers(){
+
+        while(numbers.Count() < 20){
+            Random rnd = new Random();
+            int randomNumber = rnd.Next(1, 90);
+            numbers.Add(randomNumber);
+        }
+
+        foreach (int number in numbers)
+        {
+            if(number > 20 && number < 70){
+                checkedNumbers.Add(number);
+            }
+        }
+    };
+
+    CheckNumbers();
+
+}
+
+<div class="text-center">
+
+    @foreach (int n in checkedNumbers)
+    {
+        <span>@n</span>
+    }
+</div>

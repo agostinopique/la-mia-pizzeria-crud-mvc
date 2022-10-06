@@ -1,0 +1,28 @@
+﻿@{
+    // Partendo dalla data di oggi (usando la classe DateTime) stampare in pagina:
+    // a. la data di 7 giorni fa
+    // b. che giorno della settimana è oggi (il risultato dovrà essere il nome del giorno lun, mar, mer)
+    // c. che giorno della settimana sarà nello stesso giorno e mese di oggi ma tra un anno 
+    // (il risultato dovrà essere il nome del giorno lun, mar, mer)
+
+    DateTime today = DateTime.Now;
+
+    DateTime lastWeek = DateTime.Now.AddDays(-7);
+
+    string todaysDay = today.ToString("dddd");
+
+    string lastWeekDay = lastWeek.ToString("dddd");
+
+    DateTime nextYear = DateTime.Now.AddDays(365);
+
+    string nextYearDay = nextYear.ToString("dddd");
+
+}
+
+<div class="text-center">
+
+    <p>La data della settimana scorsa è: @lastWeek</p>
+    <p>Oggi è: @todaysDay</p>
+    <p>Il giorno dell'anno prossimo è: @nextYearDay</p>
+
+</div>

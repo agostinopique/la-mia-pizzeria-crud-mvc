@@ -1,0 +1,16 @@
+﻿@{
+    // Stampare in pagina la data e l'ora attuale (usando la classe DateTime) con 
+    // il formato anno-mese-giorno ore:minuti:secondi
+
+    string TodaysDate(){
+        string today = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+      
+        return today;
+    }
+}
+
+<div class="text-center">
+
+    <span>@TodaysDate()</span>
+
+</div>

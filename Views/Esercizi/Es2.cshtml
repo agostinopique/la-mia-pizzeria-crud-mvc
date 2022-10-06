@@ -1,0 +1,18 @@
+﻿@{
+    // Creare una funzione che stampa la somma dei numeri che vanno da 1 a n (con n passato come parametro - n incluso)
+    // Stampare dentro uno span i risultati
+
+    int AddNumbers(int n){
+        int a = 0;
+        for (var i = 1; i <= n; i++)
+        {
+            a += i;
+
+        }
+        return a;
+    };
+}
+
+<div class="text-center">
+    <span>@AddNumbers(3)</span>
+</div>

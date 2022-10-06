@@ -1,0 +1,15 @@
+﻿@model Pizza
+
+<h1>Dettagli della pizza</h1>
+
+<div class="m-auto">
+    <div class="card w-50">
+        <img src="@Url.Content(Model.Picture)" class="card-img-top" alt="@Model.Name">
+        <div class="card-body">
+            <h5 class="card-title">@Model.Name</h5>
+            <p class="card-text">@Model.Description</p>
+            <p>&euro; @Model.Price</p>
+            <a href="@Url.Action("Index", "Pizza")" class="btn btn-primary">Torna alla schermata principale</a>
+        </div>
+    </div>
+</div>

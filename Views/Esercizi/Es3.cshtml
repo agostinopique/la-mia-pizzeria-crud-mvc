@@ -1,0 +1,20 @@
+﻿@{
+    // Contare quante volte viene ripetuto il carattere A nella stringa "nel mezzo del cammin di nostra vita",
+    // Stampa il risultato in pagina
+
+    int CountLetters(){
+        string value = "nel mezzo del cammin di nostra vita";
+
+        char ch = 'e';
+
+        int freq = value.Count(f => (f == ch));
+
+        return freq;
+
+    };
+   
+}
+
+<div class="text-center">
+    <span>@CountLetters()</span>
+</div>
