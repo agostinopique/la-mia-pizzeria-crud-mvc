@@ -41,5 +41,26 @@
             }
         </select>
     </div>
+    
+    <div class="mb-3">
+        <label for="ingredient" class="form-label">Ingredients</label>
+        <select id="ingredient" asp-for="Pizza.Ingredients">
+            @foreach (Ingredient ingredient in Model.SelectedIngredients)
+            {
+                @if (Model.Pizza.Ingredients.Contains(ingredient))
+                {
+                    <option value="@ingredient.Id" selected>@ingredient.Name</option>
+                }
+                else
+                {
+                    <option value="@ingredient.Id">@ingredient.Name</option>
+                }
+
+
+                <option value="@ingredient.Id">@ingredient.Name</option>
+
+            }
+        </select>
+    </div>
     <button type="submit" class="btn btn-primary">Salva</button>
 </form>

@@ -56,6 +56,7 @@ namespace la_mia_pizzeria_static.Controllers
             PizzasCategories pizzasCategories = new PizzasCategories();
             pizzasCategories.Pizza = new Pizza();
             pizzasCategories.Categories = new PizzeriaContext().Category.ToList();
+            pizzasCategories.SelectedIngredients = new PizzeriaContext().Ingredients.ToList();
             return View(pizzasCategories);
         }
 
@@ -68,18 +69,30 @@ namespace la_mia_pizzeria_static.Controllers
  
             if (!ModelState.IsValid)
             {
+                pizzaData.SelectedIngredients = db.Ingredients.ToList();
                 pizzaData.Categories = db.Category.ToList();
                 return View("Create", pizzaData);
             }
 
-            Pizza pizzaToCreate = new Pizza();
-            pizzaToCreate.Name = pizzaData.Pizza.Name;
-            pizzaToCreate.Description = pizzaData.Pizza.Description;
-            pizzaToCreate.Price = pizzaData.Pizza.Price;
-            pizzaToCreate.Picture = pizzaData.Pizza.Picture;
-            pizzaToCreate.CategoryId = pizzaData.Pizza.CategoryId;
+            List<Ingredient> selectedIngredients = new List<Ingredient>();
 
-            db.Add(pizzaToCreate);
+            foreach(Ingredient pizzaIngredient in pizzaData.SelectedIngredients)
+            {
+                Ingredient ingredient = db.Ingredients.Where(ingredient => ingredient.Id == pizzaIngredient.Id).FirstOrDefault();
+                selectedIngredients.Add(ingredient);
+            }
+            pizzaData.Pizza.Ingredients = selectedIngredients;
+
+            //Pizza pizzaToCreate = new Pizza();
+            //pizzaToCreate.Name = pizzaData.Pizza.Name;
+            //pizzaToCreate.Description = pizzaData.Pizza.Description;
+            //pizzaToCreate.Price = pizzaData.Pizza.Price;
+            //pizzaToCreate.Picture = pizzaData.Pizza.Picture;
+            //pizzaToCreate.CategoryId = pizzaData.Pizza.CategoryId;
+            //pizzaToCreate.Ingredients = selectedIngredients;
+
+            //db.Add(pizzaToCreate);
+            db.Pizze.Add(pizzaData.Pizza);
 
             db.SaveChanges();
             
@@ -101,6 +114,7 @@ namespace la_mia_pizzeria_static.Controllers
             PizzasCategories pizzasCategories = new PizzasCategories();
             pizzasCategories.Pizza = pizzaToUpdate;
             pizzasCategories.Categories = db.Category.ToList();
+            pizzasCategories.SelectedIngredients = db.Ingredients.ToList();
 
             return View("EditPizza", pizzasCategories);
         }
@@ -114,6 +128,7 @@ namespace la_mia_pizzeria_static.Controllers
             if (!ModelState.IsValid)
             {
                 pizzaData.Categories = db.Category.ToList();
+                pizzaData.SelectedIngredients = db.Ingredients.ToList();
                 return View("EditPizza", pizzaData);
             }
 

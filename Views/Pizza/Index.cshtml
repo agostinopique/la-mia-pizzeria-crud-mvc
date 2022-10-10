@@ -16,7 +16,7 @@
             <th scope="col">Description</th>
             <th scope="col">Juicie image</th>
             <th scope="col">Price</th>
-            @*<th scope="col">Category</th>*@
+            <th scope="col">Category</th>
             <th scope="col"></th>
         </tr>
     </thead>
@@ -32,6 +32,7 @@
                 <td>@pizza.Description</td>
                 <td><img style="width: 150px; height: 100px;" src="@Url.Content(@pizza.Picture)" alt="@pizza.Name"></td>
                 <td>&euro; @pizza.Price</td>
+                <td>@pizza.CategoryId</td>
                 <td><a class ="btn btn-primary" href="@Url.Action("Details", "Pizza", new {id = pizza.Id})">Dettagli</a></td>
                 <td><a class="btn btn-warning" href="@Url.Action("Edit", "Pizza", new {id = pizza.Id})">Edit</a></td>
                 <td>
