@@ -93,28 +93,48 @@ namespace la_mia_pizzeria_static.Controllers
             PizzeriaContext db = new PizzeriaContext();
 
             Pizza pizzaToUpdate = db.Pizze.Where(pizze => pizze.Id == id).FirstOrDefault();
-            return View("EditPizza", pizzaToUpdate);
+            if(pizzaToUpdate == null)
+            {
+                return NotFound();
+            } 
+
+            PizzasCategories pizzasCategories = new PizzasCategories();
+            pizzasCategories.Pizza = pizzaToUpdate;
+            pizzasCategories.Categories = db.Category.ToList();
+
+            return View("EditPizza", pizzasCategories);
         }
 
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Update(int id, Pizza pizzaData)
+        public IActionResult Update(int id, PizzasCategories pizzaData)
         {
+            PizzeriaContext db = new PizzeriaContext();
             if (!ModelState.IsValid)
             {
+                pizzaData.Categories = db.Category.ToList();
                 return View("EditPizza", pizzaData);
             }
 
-            PizzeriaContext db = new PizzeriaContext();
+            
 
             Pizza pizzaDaModificare = db.Pizze.Where(pizze => pizze.Id == id).FirstOrDefault();
 
-            pizzaDaModificare.Name = pizzaData.Name;
-            pizzaDaModificare.Description = pizzaData.Description;
-            pizzaDaModificare.Price = pizzaData.Price;
-            pizzaDaModificare.Picture = pizzaData.Picture;
-            db.SaveChanges();
+            if(pizzaDaModificare != null)
+            {
+                pizzaDaModificare.Name = pizzaData.Pizza.Name;
+                pizzaDaModificare.Description = pizzaData.Pizza.Description;
+                pizzaDaModificare.Price = pizzaData.Pizza.Price;
+                pizzaDaModificare.Picture = pizzaData.Pizza.Picture;
+                pizzaDaModificare.CategoryId = pizzaData.Pizza.CategoryId;
+                db.SaveChanges();
+
+            }
+            else
+            {
+                return NotFound();
+            }
 
             return RedirectToAction("Details", pizzaDaModificare);
         }
