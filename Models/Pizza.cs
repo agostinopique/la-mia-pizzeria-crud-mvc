@@ -14,6 +14,8 @@ namespace la_mia_pizzeria_static.Models
         public string Picture { get; set; }
         public string Price { get; set; }
 
+        public int? CategoryId { get; set; }
+        public Category? Category { get; set; }
 
         public Pizza()
         {
