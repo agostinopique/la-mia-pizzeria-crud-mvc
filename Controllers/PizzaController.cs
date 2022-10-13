@@ -3,9 +3,11 @@ using la_mia_pizzeria_static.Models;
 using System.Collections.Generic;
 using Microsoft.IdentityModel.Tokens;
 using System.Data.Entity;
+using Microsoft.AspNetCore.Authorization;
 
 namespace la_mia_pizzeria_static.Controllers
 {
+    [Authorize]
     public class PizzaController : Controller
     {
 
