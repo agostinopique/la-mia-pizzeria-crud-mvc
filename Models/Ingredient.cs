@@ -5,13 +5,11 @@
         public int Id { get; set; }
         public string Name { get; set; }
 
+        public List<Pizza>? Pizzas { get; set; }
+
         public Ingredient()
         {
 
         }
-
-        public List<Pizza>? Pizzas { get; set; }
-
-        
     }
 }

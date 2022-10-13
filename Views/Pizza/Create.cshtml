@@ -45,17 +45,18 @@
         <label for="category" class="form-label">Ingredients</label>
         <select id="category" asp-for="SelectedIngredients" multiple="multiple">
             <option value=""></option>
-            @foreach (Ingredient ingredient in Model.SelectedIngredients)
+            @foreach (Ingredient ingredient in Model.Ingredients)
             {
-              @*  @if (Model.Pizza.Ingredients.Contains(ingredient))
+                @if (Model.Pizza.Ingredients.Contains(ingredient))
                 {
                     <option value="@ingredient.Id" selected>@ingredient.Name</option>
                 }
                 else
                 {
                     <option value="@ingredient.Id">@ingredient.Name</option>
-                }*@
-                <option value="@ingredient.Id">@ingredient.Name</option>
+                }
+
+                @*<option value="@ingredient.Id">@ingredient.Name</option>*@
 
             }
         </select>
